@@ -2,8 +2,27 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import axios from "axios";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
-function App() {
+const App = () => (
+  <BrowserRouter>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+      </ul>
+
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+    </div>
+  </BrowserRouter>
+);
+
+const Home = () => {
   const userName = "simula-labs";
 
   const getProfile = async () => {
@@ -36,6 +55,8 @@ function App() {
       </header>
     </div>
   );
-}
+};
+
+const About = () => <div>About</div>;
 
 export default App;
