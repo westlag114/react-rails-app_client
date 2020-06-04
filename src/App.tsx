@@ -1,8 +1,22 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
+import axios from "axios";
 
 function App() {
+  const userName = "simula-labs";
+
+  const getProfile = async () => {
+    try {
+      const result = await axios.get(
+        `${"https://api.github.com/users"}/${userName}`
+      );
+      console.log(result.data);
+    } catch (error) {
+      throw new Error();
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,9 +32,7 @@ function App() {
         >
           Learn React
         </a>
-        <ul>
-          <li>aaa</li>
-        </ul>
+        <button onClick={getProfile}>get Profile!</button>
       </header>
     </div>
   );
