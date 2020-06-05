@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, FC } from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import axios from "axios";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+
+type Examples = {
+  id: number;
+  title: string;
+}[];
 
 const App = () => (
   <BrowserRouter>
@@ -57,6 +62,29 @@ const Home = () => {
   );
 };
 
-const About = () => <div>About</div>;
+const About = () => {
+  const [examples, setExamples] = useState<Examples | undefined>();
+
+  useEffect(() => {
+    const getExamples = async () => {
+      try {
+        const result = await axios.get("http://localhost:3000/api/v1/examples");
+        setExamples(result.data);
+      } catch (error) {
+        throw new Error();
+      }
+    };
+
+    getExamples();
+  }, []);
+
+  return (
+    <ul>
+      {examples?.map((example) => (
+        <li key={example.id}>{example.title}</li>
+      ))}
+    </ul>
+  );
+};
 
 export default App;
