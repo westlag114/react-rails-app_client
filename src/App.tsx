@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.scss";
 import axios from "axios";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
 
 type Examples = {
   id: number;
@@ -23,6 +24,7 @@ const App = () => (
 
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/recruitments" component={RecruitmentIndexPage} />
     </div>
   </BrowserRouter>
 );
