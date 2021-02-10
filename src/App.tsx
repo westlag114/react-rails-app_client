@@ -1,35 +1,20 @@
-import React, { useState, useEffect, FC } from "react";
+import React, { FC } from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 import axios from "axios";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
 
-type Examples = {
-  id: number;
-  title: string;
-}[];
-
-const App = () => (
+const App: FC = () => (
   <BrowserRouter>
     <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-
       <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
       <Route path="/recruitments" component={RecruitmentIndexPage} />
     </div>
   </BrowserRouter>
 );
 
-const Home = () => {
+const Home: FC = () => {
   const userName = "simula-labs";
 
   const getProfile = async () => {
@@ -61,31 +46,6 @@ const Home = () => {
         <button onClick={getProfile}>get Profile!</button>
       </header>
     </div>
-  );
-};
-
-const About = () => {
-  const [examples, setExamples] = useState<Examples | undefined>();
-
-  useEffect(() => {
-    const getExamples = async () => {
-      try {
-        const result = await axios.get("http://localhost:3000/api/v1/examples");
-        setExamples(result.data);
-      } catch (error) {
-        throw new Error();
-      }
-    };
-
-    getExamples();
-  }, []);
-
-  return (
-    <ul>
-      {examples?.map((example) => (
-        <li key={example.id}>{example.title}</li>
-      ))}
-    </ul>
   );
 };
 
