@@ -1,13 +1,16 @@
 import axios from "axios";
+import humps from "humps";
 
-export const AuthAxios = axios.create({
+export const HttpClient = axios.create({
   transformResponse: [
     (data) => {
-      return data;
+      return humps.camelizeKeys(data);
     },
   ],
 });
 
 const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
 
-AuthAxios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+if (!token) {
+  HttpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
