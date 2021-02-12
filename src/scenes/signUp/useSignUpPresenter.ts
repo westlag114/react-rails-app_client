@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useCurrentAccount } from "../../hooks/useCurrentAccount";
+import { Account } from "../../data/Account";
 
 export type SignUpParams = {
   account: {
@@ -13,6 +15,7 @@ export type SignUpPayload = {
 };
 
 export function useSignUpPresenter() {
+  const { setAccount } = useCurrentAccount();
   const signUp = async (data: SignUpParams) => {
     try {
       const res = await axios.request<SignUpPayload>({
@@ -21,6 +24,7 @@ export function useSignUpPresenter() {
         data: data,
       });
       localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
+      setAccount(res.data.account);
     } catch (e) {
       console.error(e);
     }

@@ -5,6 +5,7 @@ import axios from "axios";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import RecruitmentIndexPage from "./scenes/recruitment/RecruitmentIndexPage";
 import SignUpPage from "./scenes/signUp";
+import { useCurrentAccount } from "./hooks/useCurrentAccount";
 
 const App: FC = () => (
   <BrowserRouter>
@@ -17,6 +18,8 @@ const App: FC = () => (
 );
 
 const Home: FC = () => {
+  const { account } = useCurrentAccount();
+  console.log(account);
   const userName = "simula-labs";
 
   const getProfile = async () => {
