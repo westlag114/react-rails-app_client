@@ -14,3 +14,5 @@ const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
 if (!token) {
   HttpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
+
+// https://ryotarch.com/javascript/react/swr-axios-typescript/
