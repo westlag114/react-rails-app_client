@@ -9,5 +9,7 @@ const accountState = atom<Account | undefined>({
 export function useCurrentAccount() {
   const [account, setAccount] = useRecoilState(accountState);
 
+  // ここでfetchAccountしてくるべき;
+
   return { account, setAccount };
 }

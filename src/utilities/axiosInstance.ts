@@ -11,7 +11,7 @@ export const HttpClient = axios.create({
 
 const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
 
-if (!token) {
+if (token) {
   HttpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 

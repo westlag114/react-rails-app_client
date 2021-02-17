@@ -19,8 +19,9 @@ export function useSignUpPresenter() {
   const signUp = async (data: SignUpParams) => {
     try {
       const res = await axios.request<SignUpPayload>({
-        method: "GET",
-        url: "/auth/v1/sign_up",
+        method: "POST",
+        url:
+          "https://1134932e-a443-49eb-8dd6-764a9db8d7bc.mock.pstmn.io/sign_up",
         data: data,
       });
       localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
