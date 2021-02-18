@@ -1,10 +1,15 @@
-import axios from "axios";
+import axios, { AxiosTransformer } from "axios";
 import humps from "humps";
 
 export const HttpClient = axios.create({
   transformResponse: [
+    ...((axios.defaults.transformResponse as AxiosTransformer[]) || []),
+    (data) => humps.camelizeKeys(data),
+  ],
+  transformRequest: [
+    ...((axios.defaults.transformRequest as AxiosTransformer[]) || []),
     (data) => {
-      return humps.camelizeKeys(data);
+      humps.decamelizeKeys(data);
     },
   ],
 });

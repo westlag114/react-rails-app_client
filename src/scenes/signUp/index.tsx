@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
 import { SignUpParams, useSignUpPresenter } from "./useSignUpPresenter";
@@ -9,7 +9,12 @@ const SignUpPage = () => {
   const { register, handleSubmit } = useForm<SignUpParams>();
   const { signUp } = useSignUpPresenter();
   const { account } = useCurrentAccount();
+  const history = useHistory();
   console.log(account);
+
+  useEffect(() => {
+    if (account) history.push("/");
+  }, [account]);
 
   const onSubmit = (data: SignUpParams) => {
     signUp(data);
