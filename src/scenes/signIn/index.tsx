@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import styles from "./style.module.scss";
-import { SignUpParams, useSignUpPresenter } from "./useSignUpPresenter";
+import { SignInParams, useSignInPresenter } from "./useSignInPresenter";
 
-const SignUpPage = () => {
-  const { register, handleSubmit } = useForm<SignUpParams>();
-  const { signUp } = useSignUpPresenter();
+const SignInPage = () => {
+  const { register, handleSubmit } = useForm<SignInParams>();
+  const { signIn } = useSignInPresenter();
   const { account } = useCurrentAccount();
   const history = useHistory();
   console.log(account);
@@ -16,8 +16,8 @@ const SignUpPage = () => {
     if (account) history.push("/");
   }, [account]);
 
-  const onSubmit = (data: SignUpParams) => {
-    signUp(data);
+  const onSubmit = (data: SignInParams) => {
+    signIn(data);
   };
   return (
     <div className={styles.page}>
@@ -31,4 +31,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignInPage;

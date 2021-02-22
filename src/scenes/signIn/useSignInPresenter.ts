@@ -1,28 +1,27 @@
-import axios from "axios";
 import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import { Account } from "../../data/Account";
 import { HttpClient } from "../../utilities/axiosInstance";
 
-export type SignUpParams = {
+export type SignInParams = {
   account: {
     email: string;
     password: string;
   };
 };
 
-export type SignUpPayload = {
+export type SignInPayload = {
   account: Account;
   token: string;
 };
 
-export function useSignUpPresenter() {
+export function useSignInPresenter() {
   const { setAccount } = useCurrentAccount();
-  const signUp = async (data: SignUpParams) => {
+  const signIn = async (data: SignInParams) => {
     try {
-      const res = await HttpClient.request<SignUpPayload>({
+      const res = await HttpClient.request<SignInPayload>({
         method: "POST",
         url:
-          "https://1134932e-a443-49eb-8dd6-764a9db8d7bc.mock.pstmn.io/sign_up",
+          "https://1134932e-a443-49eb-8dd6-764a9db8d7bc.mock.pstmn.io/sign_in",
         data: data,
       });
       localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
@@ -32,5 +31,5 @@ export function useSignUpPresenter() {
     }
   };
 
-  return { signUp };
+  return { signIn };
 }

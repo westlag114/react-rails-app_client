@@ -9,7 +9,7 @@ const RecruitmentIndexPage = () => {
   return (
     <div className={styles.text}>
       求人一覧ページ
-      <Link to="/sign_up">サインアップ</Link>
+      <Link to="/sign_in">サインイン</Link>
     </div>
   );
 };
