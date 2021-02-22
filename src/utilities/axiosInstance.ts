@@ -4,12 +4,14 @@ import humps from "humps";
 export const HttpClient = axios.create({
   transformResponse: [
     ...((axios.defaults.transformResponse as AxiosTransformer[]) || []),
-    (data) => humps.camelizeKeys(data),
+    (data) => {
+      return humps.camelizeKeys(data);
+    },
   ],
   transformRequest: [
     ...((axios.defaults.transformRequest as AxiosTransformer[]) || []),
     (data) => {
-      humps.decamelizeKeys(data);
+      return humps.decamelizeKeys(data);
     },
   ],
 });

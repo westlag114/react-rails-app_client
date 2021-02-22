@@ -10,7 +10,6 @@ const SignInPage = () => {
   const { signIn } = useSignInPresenter();
   const { account } = useCurrentAccount();
   const history = useHistory();
-  console.log(account);
 
   useEffect(() => {
     if (account) history.push("/");

@@ -5,7 +5,6 @@ import { useCurrentAccount } from "../../../hooks/useCurrentAccount";
 
 const RecruitmentIndexPage = () => {
   const { account } = useCurrentAccount();
-  console.log(account);
   return (
     <div className={styles.text}>
       求人一覧ページ
