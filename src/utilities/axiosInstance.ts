@@ -1,4 +1,4 @@
-import axios, { AxiosTransformer } from "axios";
+import axios, { AxiosRequestConfig, AxiosTransformer } from "axios";
 import humps from "humps";
 
 export const HttpClient = axios.create({
@@ -8,12 +8,18 @@ export const HttpClient = axios.create({
       return humps.camelizeKeys(data);
     },
   ],
-  transformRequest: [
-    ...((axios.defaults.transformRequest as AxiosTransformer[]) || []),
-    (data) => {
-      return humps.decamelizeKeys(data);
-    },
-  ],
+});
+
+HttpClient.interceptors.request.use((config: AxiosRequestConfig) => {
+  const newConfig = { ...config };
+
+  if (config.params) {
+    newConfig.params = humps.decamelizeKeys(config.params);
+  }
+  if (config.data) {
+    newConfig.data = humps.decamelizeKeys(config.data);
+  }
+  return newConfig;
 });
 
 const token = localStorage.getItem("GULLIVER_WORKS_AUTH_TOKEN");
