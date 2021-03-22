@@ -21,7 +21,7 @@
     "react-scripts": "3.4.1",
     "recoil": "^0.1.2",
     "reset-css": "^5.0.1",
-    "typescript": "~3.7.2"
+    "typescript": "^4.2.3"
   },
   "scripts": {
     "start": "PORT=3500 react-scripts start",
