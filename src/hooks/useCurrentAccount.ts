@@ -30,7 +30,7 @@ export function useCurrentAccount() {
       try {
         const res = await HttpClient.request<Account>({
           method: "GET",
-          url: `${APIHost.AUTH}/accounts/${accountId}`,
+          url: `${APIHost.APP}/accounts/${accountId}`,
         });
         setAccount(res.data);
       } catch (e) {
