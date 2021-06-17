@@ -35,3 +35,7 @@ http://localhost:3500
 * `REACT_APP_APPLICATION_API_HOST`: アプリケーションサービスを提供するAPIのホストを入れてください
 
 上記の２つはもちろん一緒のホストになることもあります。
+それ以外にもAPIを接続する場合や、環境変数で管理したい他の値は随時`.env`に以下のように値を追加してください。
+```dotenv
+REACT_APP_XXXXXX=value
+```
