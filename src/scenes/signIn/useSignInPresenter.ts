@@ -1,6 +1,7 @@
 import { useCurrentAccount } from "../../hooks/useCurrentAccount";
 import { Account } from "../../data/Account";
 import { HttpClient } from "../../utilities/axiosInstance";
+import {APIHost} from "../../utilities/constants";
 
 export type SignInParams = {
   account: {
@@ -20,9 +21,8 @@ export function useSignInPresenter() {
     try {
       const res = await HttpClient.request<SignInPayload>({
         method: "POST",
-        url:
-          "https://1134932e-a443-49eb-8dd6-764a9db8d7bc.mock.pstmn.io/sign_in",
-        data: data,
+        url: `${APIHost.AUTH}/sign_in`,
+        data,
       });
       localStorage.setItem("GULLIVER_WORKS_AUTH_TOKEN", res.data.token);
       setAccount(res.data.account);
