@@ -13,7 +13,9 @@ react-rails-app_backend の api と連携させて使うことを想定してい
 - sass
 - axios
 - react-router-dom
-- reset-css
+- ress
+- babelの類
+- webpackの類
 
 ## 使い方
 
