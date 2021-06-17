@@ -26,3 +26,10 @@ yarn start
 
 http://localhost:3500
 で立ち上がります。
+
+### 環境変数
+.envで管理します
+* `REACT_APP_AUTH_API_HOST`: 認証用のAPIのホストを入れてください
+* `REACT_APP_APPLICATION_API_HOST`: アプリケーションサービスを提供するAPIのホストを入れてください
+
+上記の２つはもちろん一緒のホストになることもあります。
