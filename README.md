@@ -24,6 +24,11 @@ react-rails-app_backend の api と連携させて使うことを想定してい
 ```
 yarn install
 yarn start
+
+or 
+
+npm i
+npm start
 ```
 
 http://localhost:3500
@@ -39,3 +44,24 @@ http://localhost:3500
 ```dotenv
 REACT_APP_XXXXXX=value
 ```
+
+### フォルダ構造(src内)
+<pre>
+.
+├── src
+ ├── App.scss
+ ├── App.test.tsx
+ ├── App.tsx
+ ├── components: 使い回すことのできる要素を置く
+  └── RecruitmentCard
+      ├── index.tsx
+      └── style.module.scss
+ ├── data: バックエンドと通信するときに使う
+ ├── hooks: 複数のcomponentで使われる関数を置く
+ ├── index.scss
+ ├── react-app-env.d.ts
+ ├── scenes: 各ページの呼び出し先
+ ├── serviceWorker.ts
+ └── utilities: tsx内で使用する変数、定数など、全体で使用する要素を置く
+
+</pre>
